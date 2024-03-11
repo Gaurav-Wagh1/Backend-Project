@@ -59,14 +59,13 @@ userSchema.methods.isPasswordValid = async function (password) {
     return await bcrypt.compare(password, this.password);
 }
 
-
 // generate jwt / access token;
-userSchema.methods.generateAccessToken = function () {
+userSchema.methods.generateAccessToken = function(){
     return jwt.sign(
         {
             _id: this._id,
             email: this.email,
-            userName: this.userName,
+            username: this.username,
             fullName: this.fullName
         },
         process.env.ACCESS_TOKEN_SECRET,
